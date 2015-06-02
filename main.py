@@ -11,6 +11,9 @@ def get_states():
     return jsonify(states=logic.get_states())
 
 
+@app.route('/api/candidates')
+def get_candidates():
+    return jsonify(candidates=logic.get_candidates())
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0',debug=True)
