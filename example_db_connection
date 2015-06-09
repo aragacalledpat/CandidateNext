@@ -1,0 +1,5 @@
+[connection]
+host = localhost
+user = root
+passwd = ohmygod
+db = nashxcix_cdx
