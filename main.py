@@ -19,5 +19,11 @@ def get_candidates():
     print candis
     return json.dumps(candis)
 
+
+@app.route('/api/bills')
+def get_bills():
+    bills = logic.get_bills()
+    return json.dumps(bills)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)

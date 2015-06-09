@@ -23,9 +23,9 @@ def get_candidates():
     cur.execute("select post_id, meta_key, meta_value from nashxcix_cdx.wp_postmeta where post_id in\
                 (SELECT post_id FROM nashxcix_cdx.wp_postmeta where meta_key='bioguide_id')\
                 and meta_key = 'firstname' or meta_key = 'lastname' or meta_key = 'state'\
-                or meta_key = 'party' order by post_id;")
+                or meta_key = 'party' or meta_key = 'bioguide_id' order by post_id;")
 
-    transformed_candidates = defaultdict(lambda : defaultdict(int))
+    transformed_candidates = defaultdict(lambda : defaultdict(str))
     for row in cur.fetchall():
         cand_id = int(row[0])
         cand_prop = unicode(row[1], "utf-8")
@@ -36,4 +36,25 @@ def get_candidates():
         transformed_candidates[key] = dict(value)
 
     return transformed_candidates
+
+def get_bill_ids():
+    db_conn = get_db_connection()
+    cur = db_conn.cursor()
+    cur.execute("select distinct post from wp_voteiu_data where not vote = 1 order by post")
+    bill_ids = []
+    for item in cur.fetchall():
+        bill_ids.append(int(item[0]))
+    return bill_ids
+
+def get_bill_from_id(bill_id):
+    db_conn = get_db_connection()
+    cur = db_conn.cursor()
+    cur.execute("select meta_key, meta_value from wp_postmeta where post_id=" + str(bill_id))
+    bill_details = []
+
+    for detail in cur.fetchall():
+        bill_details.append(detail)
+    return bill_details
+
+
 
