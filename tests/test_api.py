@@ -9,3 +9,6 @@ def test_modules_exist():
 def test_da_states_count():
     states = candix_api.data_access.get_states()
     assert(len(states) == 50)
+
+def test_that_should_fail():
+    assert(1 == 2)
