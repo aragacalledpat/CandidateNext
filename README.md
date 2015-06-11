@@ -1,1 +1,1 @@
-# CandidateNext [![Build Status](https://travis-ci.org/aragacalledpat/CandidateNext.svg?branch=master)](https://travis-ci.org/aragacalledpat/CandidateNext) 
+# CandidateNext [![Build Status](https://travis-ci.org/aragacalledpat/CandidateNext.svg?branch=master)](https://travis-ci.org/aragacalledpat/CandidateNext) [![Coverage Status](https://coveralls.io/repos/aragacalledpat/CandidateNext/badge.svg?branch=master)](https://coveralls.io/r/aragacalledpat/CandidateNext?branch=master) 
