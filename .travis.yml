@@ -7,8 +7,8 @@ install:
     - pip install coveralls  
 
 script: 
-    - py.test \
-    coverage run candix_api/data_access.py candix_api/logic.py tests/test_api.py
+    - py.test 
+    - coverage run candix_api/data_access.py candix_api/logic.py tests/test_api.py
 
 after_success:
     coveralls
