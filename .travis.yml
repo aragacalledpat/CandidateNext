@@ -4,6 +4,11 @@ python:
 
 install:
     - pip install -r requirements.txt
+    - pip install coveralls  
 
 script: 
-    py.test
+    - py.test \
+    coverage run candix_api/data_access.py candix_api/logic.py tests/test_api.py
+
+after_success:
+    coveralls
