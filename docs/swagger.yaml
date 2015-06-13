@@ -1,0 +1,22 @@
+swagger: '2.0'
+info:
+  title: Polling Partners API
+  description: Some Description
+  version: 0.1.0
+host: api.candidatenextdomain.com
+schemes:
+  - https
+basePath: /api
+produces:
+  - application/json
+paths:
+  /states:
+    get:
+      summary: Get all state abbreviations
+      description: |
+        You'll need the state abbreviations so here they are, dude.
+      responses:
+        '200':
+          description: An array of abbreviations
+        default:
+          description: Unexpected error
