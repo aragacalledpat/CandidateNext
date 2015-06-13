@@ -20,3 +20,23 @@ paths:
           description: An array of abbreviations
         default:
           description: Unexpected error
+  /candidates:
+    get:
+      summary: Get all candidate objects 
+      description: |
+        get candidates description
+      responses:
+        '200':
+          description: An array of abbreviations
+        default:
+          description: Unexpected error
+  /bills:
+    get:
+      summary: Get all bill objects 
+      description: |
+        get bills descriptions 
+      responses:
+        '200':
+          description: An array of abbreviations
+        default:
+          description: Unexpected error
