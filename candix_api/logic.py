@@ -19,3 +19,6 @@ def get_states():
 
 def get_districts():
     return data_access.get_districts()
+
+def get_district(dist_id):
+    return data_access.get_district(dist_id)

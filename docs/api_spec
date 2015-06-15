@@ -1,12 +1,7 @@
-get candidates      
-    all candidate info with ID 
 get bills
     get last 100 bills
     pass in candidateID and last 100 bills
     page via postId
-
-get states
-pass in state abbreviation, get districts
 
 pass in district
     user objects with user metadata also paged

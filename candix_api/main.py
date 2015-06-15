@@ -29,5 +29,9 @@ def get_bills():
 def get_districts():
     return jsonify(districts=logic.get_districts())
 
+@app.route('/api/districts/<dist_id>')
+def get_district(dist_id):
+    return jsonify(users=logic.get_district())
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)

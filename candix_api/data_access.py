@@ -15,14 +15,17 @@ def get_db_connection():
                             passwd=config_password,
                             db=config_db)
 
-
-def get_candidates():
-    #returns all candidates but only firstname, lastname, party and state
-    #this will get rewritten once the tables get fixed
+def do_mysql(sql_action):
     db_conn = get_db_connection()
     cur = db_conn.cursor()
-    cur.execute("select candix_congress_id, firstname, lastname, gender, party, state, district from candix_congress")
-    congress_tuples = map(objects.Short_CongressPersonRecord._make, cur.fetchall())
+    cur.execute(sql_action)
+    db_conn.close()
+    return cur.fetchall()
+
+def get_candidates():
+
+    result = do_mysql("select candix_congress_id, firstname, lastname, gender, party, state, district from candix_congress")
+    congress_tuples = map(objects.Short_CongressPersonRecord._make, result)
 
     candidates = []
     for congressperson in congress_tuples:
@@ -83,7 +86,8 @@ def get_districts():
         districts[district_tuple.state].append(district_dict)
     return dict(districts)
 
-
+def get_district(dist_id):
+    return dist_id
 
 
 
