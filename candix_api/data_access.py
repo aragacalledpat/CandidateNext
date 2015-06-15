@@ -1,6 +1,7 @@
 import MySQLdb
 from ConfigParser import SafeConfigParser
 from collections import defaultdict
+import objects
 
 def get_db_connection():
     parser = SafeConfigParser()
@@ -20,22 +21,24 @@ def get_candidates():
     #this will get rewritten once the tables get fixed
     db_conn = get_db_connection()
     cur = db_conn.cursor()
-    cur.execute("select post_id, meta_key, meta_value from nashxcix_cdx.wp_postmeta where post_id in\
-                (SELECT post_id FROM nashxcix_cdx.wp_postmeta where meta_key='bioguide_id')\
-                and meta_key = 'firstname' or meta_key = 'lastname' or meta_key = 'state'\
-                or meta_key = 'party' or meta_key = 'bioguide_id' order by post_id;")
+    cur.execute("select candix_congress_id, firstname, lastname, gender, party, state, district from candix_congress")
+    congress_tuples = map(objects.Short_CongressPersonRecord._make, cur.fetchall())
 
-    transformed_candidates = defaultdict(lambda : defaultdict(str))
-    for row in cur.fetchall():
-        cand_id = int(row[0])
-        cand_prop = unicode(row[1], "utf-8")
-        cand_prop_val = unicode(row[2], "utf-8", errors='replace')
-        transformed_candidates[cand_id][cand_prop] = cand_prop_val
+    candidates = {}
+    for congressperson in congress_tuples:
 
-    for key,value in transformed_candidates.iteritems():
-        transformed_candidates[key] = dict(value)
+        #add record to dictionary using ID as the key
+        candix_id = int(congressperson.ID)
+        congress_dict = dict(congressperson._asdict())
+        del congress_dict["ID"]
 
-    return transformed_candidates
+        #make sure we have the right encoding
+        for key in congress_dict:
+            congress_dict[key] = unicode(congress_dict[key], "utf-8", errors="replace")
+
+        candidates[candix_id] = congress_dict
+
+    return candidates
 
 def get_bill_ids():
     db_conn = get_db_connection()
