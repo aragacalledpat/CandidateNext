@@ -26,7 +26,7 @@ def get_candidates():
 
     candidates = []
     for congressperson in congress_tuples:
-
+        congress_dict = dict(congressperson._asdict())
         congress_dict["ID"] = str(int(congress_dict["ID"]))
 
         #make sure we have the right encoding
