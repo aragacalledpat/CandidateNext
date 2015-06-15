@@ -40,14 +40,15 @@ def get_candidates():
 
     return candidates
 
-def get_bill_ids():
-    db_conn = get_db_connection()
-    cur = db_conn.cursor()
-    cur.execute("select distinct post from wp_voteiu_data where not vote = 1 order by post")
-    bill_ids = []
-    for item in cur.fetchall():
-        bill_ids.append(int(item[0]))
-    return bill_ids
+def get_bills():
+    result = do_mysql("select bill_id, chamber, introduced_on, official_title, last_action_at from candix_bills")
+    bills_tuples = map(objects.Short_Bill._make, result)
+    bills = []
+
+    for bill in bills_tuples:
+        bill_dict = dict(bill._asdict())
+        bills.append(bill_dict)
+    return bills
 
 def get_bill_from_id(bill_id):
     db_conn = get_db_connection()
