@@ -70,10 +70,8 @@ def get_states():
             "WY"]
 
 def get_districts():
-    db_conn = get_db_connection()
-    cur = db_conn.cursor()
-    cur.execute("select * from candix_districts")
-    district_tuples = map(objects.District._make, cur.fetchall())
+    result = do_mysql("select * from candix_districts")
+    district_tuples = map(objects.District._make, result)
 
     districts = defaultdict(list)
     for district_tuple in district_tuples:
