@@ -16,3 +16,6 @@ def get_bills():
 
 def get_states():
     return data_access.get_states()
+
+def get_districts():
+    return data_access.get_districts()

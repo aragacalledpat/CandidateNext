@@ -27,8 +27,6 @@ def get_candidates():
     candidates = []
     for congressperson in congress_tuples:
 
-        #add record to dictionary using ID as the key
-        congress_dict = dict(congressperson._asdict())
         congress_dict["ID"] = str(int(congress_dict["ID"]))
 
         #make sure we have the right encoding
@@ -72,12 +70,20 @@ def get_districts():
     db_conn = get_db_connection()
     cur = db_conn.cursor()
     cur.execute("select * from candix_districts")
+    district_tuples = map(objects.District._make, cur.fetchall())
 
-    districts = []
+    districts = defaultdict(list)
+    for district_tuple in district_tuples:
+        district_dict = dict(district_tuple._asdict())
+        del district_dict["state"]
+
+        district_dict['district'] = int(district_dict['district'])
+        district_dict['candix_districts_id'] = int(district_dict['candix_districts_id'])
+
+        districts[district_tuple.state].append(district_dict)
+    return dict(districts)
 
 
-    for district in cur.fetchall():
-        districts[cur[2]]
 
 
 

@@ -10,3 +10,5 @@ CongressPersonRecord = namedtuple('CongressPersonRecord', ['candix_congress_id',
                                                             'votesmart_id', 'webform', 'website', 'youtube_url'])
 
 Short_CongressPersonRecord = namedtuple('Short_CongressPersonRecord', ['ID', 'firstname', 'lastname', 'gender', 'party', 'state', 'district'])
+
+District = namedtuple('District', ['candix_districts_id', 'candix_districts_path_id','state' ,'district'])

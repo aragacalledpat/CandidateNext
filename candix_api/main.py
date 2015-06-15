@@ -24,5 +24,10 @@ def get_bills():
     bills = logic.get_bills()
     return json.dumps(bills)
 
+
+@app.route('/api/districts')
+def get_districts():
+    return jsonify(districts=logic.get_districts())
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
