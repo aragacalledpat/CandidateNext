@@ -16,8 +16,7 @@ def get_states():
 @app.route('/api/candidates')
 def get_candidates():
     candis = logic.get_candidates()
-    print candis
-    return json.dumps(candis)
+    return jsonify(congresspeople=candis)
 
 
 @app.route('/api/bills')

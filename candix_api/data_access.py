@@ -24,19 +24,18 @@ def get_candidates():
     cur.execute("select candix_congress_id, firstname, lastname, gender, party, state, district from candix_congress")
     congress_tuples = map(objects.Short_CongressPersonRecord._make, cur.fetchall())
 
-    candidates = {}
+    candidates = []
     for congressperson in congress_tuples:
 
         #add record to dictionary using ID as the key
-        candix_id = int(congressperson.ID)
         congress_dict = dict(congressperson._asdict())
-        del congress_dict["ID"]
+        congress_dict["ID"] = str(int(congress_dict["ID"]))
 
         #make sure we have the right encoding
         for key in congress_dict:
             congress_dict[key] = unicode(congress_dict[key], "utf-8", errors="replace")
 
-        candidates[candix_id] = congress_dict
+        candidates.append(congress_dict)
 
     return candidates
 
@@ -68,5 +67,18 @@ def get_states():
             "OK", "OR", "PA", "RI", "SC", "SD", "TN",
             "TX", "UT", "VT", "VA", "WA", "WV", "WI",
             "WY"]
+
+def get_districts():
+    db_conn = get_db_connection()
+    cur = db_conn.cursor()
+    cur.execute("select * from candix_districts")
+
+    districts = []
+
+
+    for district in cur.fetchall():
+        districts[cur[2]]
+
+
 
 
