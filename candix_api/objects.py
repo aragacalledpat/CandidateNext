@@ -12,3 +12,14 @@ CongressPersonRecord = namedtuple('CongressPersonRecord', ['candix_congress_id',
 Short_CongressPersonRecord = namedtuple('Short_CongressPersonRecord', ['ID', 'firstname', 'lastname', 'gender', 'party', 'state', 'district'])
 
 District = namedtuple('District', ['candix_districts_id', 'candix_districts_path_id','state' ,'district'])
+
+Bill = namedtuple('Bill', ['candix_bill_id', 'wp_post_id', 'bill_id', 'bill_type',
+                            'chamber', 'committee_ids', 'congress','cosponsors_count',
+                            'cosponsor_ids', 'enacted_as', 'history', 'introduced_on',
+                            'keywords', 'last_action', 'last_action_at', 'last_version',
+                            'last_version_on', 'last_vote_at', 'number', 'official_title',
+                            'popular_title', 'related_bill_ids', 'search', 'short_title',
+                            'sponsor', 'sponsor_id', 'summary', 'summary_short', 'titles',
+                            'voteiu', 'not_interested','withdrawn_cosponsors_count'])
+
+Short_Bill = namedtuple('Short_Bill', ['bill_id', 'chamber', 'introduced_on', 'official_title'])
