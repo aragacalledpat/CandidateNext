@@ -21,8 +21,8 @@ def get_candidates():
 
 @app.route('/api/bills')
 def get_bills():
-    bills = logic.get_bills()
-    return json.dumps(bills)
+    bill_list = logic.get_bills()
+    return jsonify(bills=bill_list)
 
 
 @app.route('/api/districts')

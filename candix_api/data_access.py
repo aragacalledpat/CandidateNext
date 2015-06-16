@@ -47,6 +47,8 @@ def get_bills():
 
     for bill in bills_tuples:
         bill_dict = dict(bill._asdict())
+        bill_dict["last_action_at"] = bill_dict["last_action_at"].strftime('%Y-%m-%d')
+
         bills.append(bill_dict)
     return bills
 
