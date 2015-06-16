@@ -19,6 +19,11 @@ def get_candidates():
     return jsonify(congresspeople=candis)
 
 
+@app.route('/api/candidates/<candix_congress_id>')
+def get_candidate(candix_congress_id):
+    candidate = logic.get_candidate(candix_congress_id)
+    return jsonify(candidate)
+
 @app.route('/api/bills')
 def get_bills():
     bill_list = logic.get_bills()
@@ -31,7 +36,7 @@ def get_districts():
 
 @app.route('/api/districts/<dist_id>')
 def get_district(dist_id):
-    return jsonify(users=logic.get_district())
+    return jsonify(users=logic.get_district(dist_id))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)

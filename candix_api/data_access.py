@@ -40,6 +40,17 @@ def get_candidates():
 
     return candidates
 
+def get_candidate(candix_congress_id):
+    result = do_mysql("select * from candix_congress where candix_congress_id = " + candix_congress_id)
+    first_row = result[0]
+    candidate_tuple = objects.CongressPersonRecord._make(first_row)
+
+    candidate_dict = dict(candidate_tuple._asdict())
+    candidate_dict["birthdate"] = candidate_dict["birthdate"].strftime('%Y-%m-%d')
+    print candidate_dict
+    return candidate_dict
+
+
 def get_bills():
     result = do_mysql("select bill_id, chamber, introduced_on, official_title, last_action_at from candix_bills")
     bills_tuples = map(objects.Short_Bill._make, result)

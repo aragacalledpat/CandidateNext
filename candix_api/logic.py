@@ -4,6 +4,9 @@ from collections import defaultdict
 def get_candidates():
     return data_access.get_candidates()
 
+def get_candidate(candix_congress_id):
+    return data_access.get_candidate(candix_congress_id)
+
 def get_bills():
     return data_access.get_bills()
 
