@@ -82,16 +82,14 @@ def get_districts():
     result = do_mysql("select * from candix_districts")
     district_tuples = map(objects.District._make, result)
 
-    districts = defaultdict(list)
-    for district_tuple in district_tuples:
-        district_dict = dict(district_tuple._asdict())
-        del district_dict["state"]
+    for i, district_tuple in enumerate(district_tuples):
+        dist_id = int(district_tuple.district)
+        candix_dist_id = int(district_tuple.candix_districts_id)
+        district_tuple = district_tuple._replace(district=dist_id,candix_districts_id=candix_dist_id)
+        district_tuples[i] = district_tuple
 
-        district_dict['district'] = int(district_dict['district'])
-        district_dict['candix_districts_id'] = int(district_dict['candix_districts_id'])
+    return district_tuples
 
-        districts[district_tuple.state].append(district_dict)
-    return dict(districts)
 
 def get_district(dist_id):
     return dist_id

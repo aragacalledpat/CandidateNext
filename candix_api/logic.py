@@ -38,7 +38,15 @@ def get_states():
     return data_access.get_states()
 
 def get_districts():
-    return data_access.get_districts()
+    district_tuples = data_access.get_districts()
+
+    districts = defaultdict(list)
+    for district_tuple in district_tuples:
+        district_dict = dict(district_tuple._asdict())
+        del district_dict["state"]
+        districts[district_tuple.state].append(district_dict)
+
+    return dict(districts)
 
 def get_district(dist_id):
     return data_access.get_district(dist_id)
