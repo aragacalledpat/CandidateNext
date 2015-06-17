@@ -26,28 +26,23 @@ def get_candidates():
     result = do_mysql("select candix_congress_id, firstname, lastname, gender, party, state, district from candix_congress")
     congress_tuples = map(objects.Short_CongressPersonRecord._make, result)
 
-    candidates = []
-    for congressperson in congress_tuples:
-        congress_dict = dict(congressperson._asdict())
-        congress_dict["ID"] = str(int(congress_dict["ID"]))
+    #convert "ID" which comes back as a long to be a string
+    for i, congress_tuple in enumerate(congress_tuples):
+        congress_id = str(int(congress_tuple.ID))
+        congress_tuple = congress_tuple._replace(ID=congress_id)
+        congress_tuples[i] = congress_tuple
 
-        #make sure we have the right encoding
-        for key in congress_dict:
-            congress_dict[key] = unicode(congress_dict[key], "utf-8", errors="replace")
-
-        candidates.append(congress_dict)
-
-    return candidates
+    return congress_tuples
 
 def get_candidate(candix_congress_id):
     result = do_mysql("select * from candix_congress where candix_congress_id = " + candix_congress_id)
     first_row = result[0]
     candidate_tuple = objects.CongressPersonRecord._make(first_row)
 
-    candidate_dict = dict(candidate_tuple._asdict())
-    candidate_dict["birthdate"] = candidate_dict["birthdate"].strftime('%Y-%m-%d')
-    print candidate_dict
-    return candidate_dict
+    #reformat datetimes to be strings
+    formatted_bday = candidate_tuple.birthdate.strftime("%Y-%m-%d")
+    candidate_tuple = candidate_tuple._replace(birthdate=formatted_bday)
+    return candidate_tuple
 
 
 def get_bills():
