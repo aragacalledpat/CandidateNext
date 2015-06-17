@@ -10,6 +10,9 @@ def get_candidate(candix_congress_id):
 def get_bills():
     return data_access.get_bills()
 
+def get_bill(bill_id):
+    return data_access.get_bill(bill_id)
+
 def get_states():
     return data_access.get_states()
 

@@ -29,6 +29,10 @@ def get_bills():
     bill_list = logic.get_bills()
     return jsonify(bills=bill_list)
 
+@app.route('/api/bills/<bill_id>')
+def get_bill(bill_id):
+    bill = logic.get_bill(bill_id)
+    return jsonify(bill)
 
 @app.route('/api/districts')
 def get_districts():

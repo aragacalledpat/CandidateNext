@@ -23,7 +23,6 @@ def do_mysql(sql_action):
     return cur.fetchall()
 
 def get_candidates():
-
     result = do_mysql("select candix_congress_id, firstname, lastname, gender, party, state, district from candix_congress")
     congress_tuples = map(objects.Short_CongressPersonRecord._make, result)
 
@@ -63,15 +62,16 @@ def get_bills():
         bills.append(bill_dict)
     return bills
 
-def get_bill_from_id(bill_id):
-    db_conn = get_db_connection()
-    cur = db_conn.cursor()
-    cur.execute("select meta_key, meta_value from wp_postmeta where post_id=" + str(bill_id))
-    bill_details = []
+def get_bill(bill_id):
+    result = do_mysql("select * from candix_bills where bill_id = \"" + bill_id + "\"")
+    first_row = result[0]
+    bill_tuple = objects.Bill._make(first_row)
 
-    for detail in cur.fetchall():
-        bill_details.append(detail)
-    return bill_details
+    bill_dict = dict(bill_tuple._asdict())
+    bill_dict["last_action_at"] = bill_dict["last_action_at"].strftime('%Y-%m-%d')
+    bill_dict["last_version_on"] = bill_dict["last_version_on"].strftime('%Y-%m-%d')
+
+    return bill_dict
 
 def get_states():
     return ["AL", "AK", "AZ", "AR", "CA", "CO", "CT",
