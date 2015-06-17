@@ -36,3 +36,10 @@ def test_lg_getcandidates_returnslist(mocked_function):
     candidates = logic.get_candidates()
     assert isinstance(candidates,list)
 
+
+
+@mock.patch('candix_api.data_access.get_candidates', side_effect=mock_get_candidates)
+def test_lg_getcandidates_returnhasdicts(mocked_function):
+    candidates = logic.get_candidates()
+    for candidate in candidates:
+        assert isinstance(candidate, dict)
