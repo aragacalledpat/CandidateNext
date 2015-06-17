@@ -22,10 +22,17 @@ def get_candidate(candix_congress_id):
     return dict(candidate_tuple._asdict())
 
 def get_bills():
-    return data_access.get_bills()
+    bill_tuples = data_access.get_bills()
+
+    bills = []
+    for bill in bill_tuples:
+        bill_dict = dict(bill._asdict())
+        bills.append(bill_dict)
+    return bills
 
 def get_bill(bill_id):
-    return data_access.get_bill(bill_id)
+    bill_tuple = data_access.get_bill(bill_id)
+    return dict(bill_tuple._asdict())
 
 def get_states():
     return data_access.get_states()

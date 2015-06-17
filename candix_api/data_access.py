@@ -48,25 +48,25 @@ def get_candidate(candix_congress_id):
 def get_bills():
     result = do_mysql("select bill_id, chamber, introduced_on, official_title, last_action_at from candix_bills")
     bills_tuples = map(objects.Short_Bill._make, result)
-    bills = []
 
-    for bill in bills_tuples:
-        bill_dict = dict(bill._asdict())
-        bill_dict["last_action_at"] = bill_dict["last_action_at"].strftime('%Y-%m-%d')
+    for i, bill in enumerate(bills_tuples):
+        last_action_date = bill.last_action_at.strftime('%Y-%m-%d')
+        bill = bill._replace(last_action_at=last_action_date)
+        bills_tuples[i] = bill
 
-        bills.append(bill_dict)
-    return bills
+    return bills_tuples
+
 
 def get_bill(bill_id):
     result = do_mysql("select * from candix_bills where bill_id = \"" + bill_id + "\"")
     first_row = result[0]
     bill_tuple = objects.Bill._make(first_row)
 
-    bill_dict = dict(bill_tuple._asdict())
-    bill_dict["last_action_at"] = bill_dict["last_action_at"].strftime('%Y-%m-%d')
-    bill_dict["last_version_on"] = bill_dict["last_version_on"].strftime('%Y-%m-%d')
+    last_action = bill_tuple.last_action_at.strftime('%Y-%m-%d')
+    last_version = bill_tuple.last_version_on.strftime('%Y-%m-%d')
+    bill_tuple = bill_tuple._replace(last_action_at=last_action, last_version_on=last_version)
 
-    return bill_dict
+    return bill_tuple
 
 def get_states():
     return ["AL", "AK", "AZ", "AR", "CA", "CO", "CT",
