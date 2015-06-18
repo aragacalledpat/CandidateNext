@@ -185,5 +185,18 @@ def test_main_bills_returnsjson(mocked_function):
 @mock.patch('candix_api.data_access.get_bill', side_effect=mock_get_bill)
 def test_main_bill_returnsjson(mocked_function):
     with main.app.test_client() as c:
-        rv = c.get('/api/bills/hr2505-114"')
+        rv = c.get('/api/bills/hr2505-114')
+        json.loads(rv.data)
+
+
+@mock.patch('candix_api.data_access.get_districts', side_effect=mock_get_districts)
+def test_main_districts_returnsjson(mocked_function):
+    with main.app.test_client() as c:
+        rv = c.get('/api/districts')
+        json.loads(rv.data)
+
+
+def test_main_district_returnsjson():
+    with main.app.test_client() as c:
+        rv = c.get('/api/districts/1')
         json.loads(rv.data)
