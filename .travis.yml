@@ -8,7 +8,7 @@ install:
 
 script: 
     - py.test 
-    - coverage run --source candix_api -m py.test
+    - coverage run --source candix_api -m py.test -q
 
 after_success:
     coveralls

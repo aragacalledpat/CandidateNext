@@ -18,7 +18,6 @@ def get_candidates():
 
 def get_candidate(candix_congress_id):
     candidate_tuple = data_access.get_candidate(candix_congress_id)
-
     return dict(candidate_tuple._asdict())
 
 def get_bills():
