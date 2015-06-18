@@ -156,7 +156,22 @@ def test_lg_getdistricts_districts_havecorrectfields(mocked_function):
     assert 'district' in first_cali_district
 
 def test_main_getstates_returnsjson():
-    #will fail if json isn't good
     with main.app.test_client() as c:
         rv = c.get('/api/states')
         json.loads(rv.data)
+
+
+@mock.patch('candix_api.data_access.get_candidates', side_effect=mock_get_candidates)
+def test_main_getcandidates_returnsjson(mocked_function):
+    with main.app.test_client() as c:
+        rv = c.get('/api/candidates')
+        json.loads(rv.data)
+
+
+@mock.patch('candix_api.data_access.get_candidate', side_effect=mock_get_candidate)
+def test_main_getcandidate_returnsjson(mocked_function):
+    with main.app.test_client() as c:
+        rv = c.get('/api/candidates/3581')
+        json.loads(rv.data)
+
+
