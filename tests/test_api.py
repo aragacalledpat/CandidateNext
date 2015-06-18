@@ -1,6 +1,7 @@
 import candix_api
 from candix_api import data_access, logic, objects, main
 import mock
+import json
 
 #mocks for data access layer
 def mock_get_candidates():
@@ -153,3 +154,9 @@ def test_lg_getdistricts_districts_havecorrectfields(mocked_function):
     assert 'candix_districts_id' in first_cali_district
     assert 'candix_districts_path_id' in first_cali_district
     assert 'district' in first_cali_district
+
+def test_main_getstates_returnsjson():
+    #will fail if json isn't good
+    with main.app.test_client() as c:
+        rv = c.get('/api/states')
+        json.loads(rv.data)

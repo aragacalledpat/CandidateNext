@@ -4,9 +4,6 @@ import logic
 
 app = Flask(__name__)
 
-@app.route('/api')
-def hello_world():
-    return 'Api Entry Point (add documentation here or something)!'
 
 @app.route('/api/states')
 def get_states():
