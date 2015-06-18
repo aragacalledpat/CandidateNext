@@ -175,3 +175,15 @@ def test_main_getcandidate_returnsjson(mocked_function):
         json.loads(rv.data)
 
 
+@mock.patch('candix_api.data_access.get_bills', side_effect=mock_get_bills)
+def test_main_bills_returnsjson(mocked_function):
+    with main.app.test_client() as c:
+        rv = c.get('/api/bills')
+        json.loads(rv.data)
+
+
+@mock.patch('candix_api.data_access.get_bill', side_effect=mock_get_bill)
+def test_main_bill_returnsjson(mocked_function):
+    with main.app.test_client() as c:
+        rv = c.get('/api/bills/hr2505-114"')
+        json.loads(rv.data)
