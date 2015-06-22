@@ -149,9 +149,9 @@ def test_lg_getdistricts_listitemsaredicts(mocked_function):
 def test_lg_getdistricts_districts_havecorrectfields(mocked_function):
     districts = logic.get_districts()
     first_cali_district = districts["CA"][0]
-    assert len(first_cali_district.keys()) == 3
+    assert len(first_cali_district.keys()) == 2
     assert 'state' not in first_cali_district
-    assert 'candix_districts_id' in first_cali_district
+    assert 'candix_districts_id' not in first_cali_district
     assert 'candix_districts_path_id' in first_cali_district
     assert 'district' in first_cali_district
 

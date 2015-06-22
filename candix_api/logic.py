@@ -43,6 +43,7 @@ def get_districts():
     for district_tuple in district_tuples:
         district_dict = dict(district_tuple._asdict())
         del district_dict["state"]
+        del district_dict["candix_districts_id"]
         districts[district_tuple.state].append(district_dict)
 
     return dict(districts)
