@@ -99,6 +99,15 @@ def get_district(dist_id):
 
     return userIds
 
+def get_user_votes(user_id):
+    result = do_mysql("SELECT candix_votes_users_bills.type, "
+            "candix_bills.bill_id, candix_votes_users_bills.timestamp from candix_votes_users_bills "
+            "inner join candix_bills on candix_bills.wp_post_id = candix_votes_users_bills.post where vote=" + user_id)
 
+    user_votes = map(objects.User_Votes._make, result)
+    for i, opinion in enumerate(user_votes):
+        if opinion.vote == "vote":
+          user_votes[i] = opinion._replace(vote="yea")
 
+    return user_votes
 

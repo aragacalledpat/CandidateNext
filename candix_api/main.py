@@ -39,5 +39,10 @@ def get_districts():
 def get_district(dist_id):
     return jsonify(users=logic.get_district(dist_id))
 
+@app.route('/api/users/<user_id>')
+def get_user_votes(user_id):
+    return jsonify(votes=logic.get_user_votes(user_id))
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)

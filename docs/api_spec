@@ -3,9 +3,4 @@ get bills
     pass in candidateID and last 100 bills
     page via postId
 
-pass in district
-    user objects with user metadata also paged
-
-users
-    pass in users, get votes paged    
 

@@ -50,3 +50,6 @@ def get_districts():
 
 def get_district(dist_id):
     return data_access.get_district(dist_id)
+
+def get_user_votes(user_id):
+    return data_access.get_user_votes(user_id)
