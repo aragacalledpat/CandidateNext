@@ -92,7 +92,12 @@ def get_districts():
 
 
 def get_district(dist_id):
-    return dist_id
+    result = do_mysql("SELECT user_id FROM nashxcix_cdx.wp_usermeta where meta_key=\"district\" and meta_value = "+ dist_id  + ";")
+    userIds = []
+    for user in result:
+        userIds.append(user[0])
+
+    return userIds
 
 
 
