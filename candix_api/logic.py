@@ -20,8 +20,8 @@ def get_candidate(candix_congress_id):
     candidate_tuple = data_access.get_candidate(candix_congress_id)
     return dict(candidate_tuple._asdict())
 
-def get_bills():
-    bill_tuples = data_access.get_bills()
+def get_bills(page_number):
+    bill_tuples = data_access.get_bills(page_number)
 
     bills = []
     for bill in bill_tuples:
@@ -53,3 +53,6 @@ def get_district(dist_id):
 
 def get_user_votes(user_id):
     return data_access.get_user_votes(user_id)
+
+def get_bills_pagecount():
+    return (data_access.get_bills_count() / 100) + 1

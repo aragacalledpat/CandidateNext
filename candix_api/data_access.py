@@ -44,9 +44,13 @@ def get_candidate(candix_congress_id):
     candidate_tuple = candidate_tuple._replace(birthdate=formatted_bday)
     return candidate_tuple
 
+def get_bills_count():
+    result = do_mysql("select count(*)  from candix_bills")
+    return result[0][0]
 
-def get_bills():
-    result = do_mysql("select bill_id, chamber, introduced_on, official_title, last_action_at from candix_bills")
+def get_bills(page_count):
+    start_at = (int(page_count) - 1) * 100
+    result = do_mysql("select bill_id, chamber, introduced_on, official_title, last_action_at from candix_bills order by introduced_on DESC LIMIT " + str(start_at) + ", 100")
     bills_tuples = map(objects.Short_Bill._make, result)
 
     for i, bill in enumerate(bills_tuples):

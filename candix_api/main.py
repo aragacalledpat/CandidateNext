@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import json
 import logic
 
@@ -23,8 +23,11 @@ def get_candidate(candix_congress_id):
 
 @app.route('/api/bills')
 def get_bills():
-    bill_list = logic.get_bills()
-    return jsonify(bills=bill_list)
+    if "page" in request.args:
+        bill_list = logic.get_bills(request.args.get('page'))
+        return jsonify(bills=bill_list)
+    else:
+        return jsonify(pageCount=logic.get_bills_pagecount())
 
 @app.route('/api/bills/<bill_id>')
 def get_bill(bill_id):
