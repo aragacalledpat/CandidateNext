@@ -194,9 +194,3 @@ def test_main_districts_returnsjson(mocked_function):
     with main.app.test_client() as c:
         rv = c.get('/api/districts')
         json.loads(rv.data)
-
-
-def test_main_district_returnsjson():
-    with main.app.test_client() as c:
-        rv = c.get('/api/districts/1')
-        json.loads(rv.data)
