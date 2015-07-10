@@ -1,6 +1,11 @@
-get bills
-    get last 100 bills
-    pass in candidateID and last 100 bills
-    page via postId
+calls for v2/v3
+
+1. get top 100 trending bills
+2. get most recent 100 votes for a congressperson
+3. get all user votes for a specific bill
+4. get percentage congresspeople agree with their district for a specific bill <- should also return a sigma value
+5. get most ignored bills
+
+6. get most followed topics (implement after db changes)
 
 
