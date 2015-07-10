@@ -14,7 +14,7 @@ def mock_get_candidate(candix_congress_id):
     return objects.CongressPersonRecord(3581L, 'HI-1', 2796L, 'A000014', '1938-06-26', 'http://www.opencongress.org/wiki/Neil_Abercrombie', '', 'N00007665', '1', '', '', 'H6HI01121', 'Neil', 'M', '400001', 0, 'Abercrombie', '', '', '', '', '', 'D', '', '', 'HI', 'Rep', 'neilabercrombie', None, '26827', '', 'http://www.house.gov/abercrombie', 'http://youtube.com/hawaiirep1')
 
 
-def mock_get_bills():
+def mock_get_bills(page_number):
     mock_bills = []
     mock_bills.append(objects.Short_Bill("hr2505-114", "house", "2015-05-21", "To amend title XVIII of the Social Security Act to require the annual reporting of data on enrollment in Medicare Advantage plans.", "2015-06-12"))
     mock_bills.append(objects.Short_Bill("hr1314-114", "house", "2015-06-10", "Providing for consideration of the Senate amendment to the bill (H.R. 1314) to amend the Internal Revenue Code of 1986 to provide for a right to an administrative appeal relating to adverse determinations of tax-exempt status of certain organizations, and", "2015-06-11"))
@@ -84,19 +84,19 @@ def test_lg_getcandidate_hasfields(mocked_function):
 
 @mock.patch('candix_api.data_access.get_bills', side_effect=mock_get_bills)
 def test_lg_getbills_returns_list(mocked_function):
-    bills = logic.get_bills()
+    bills = logic.get_bills(1)
     assert isinstance(bills, list)
 
 
 @mock.patch('candix_api.data_access.get_bills', side_effect=mock_get_bills)
 def test_lg_getbills_returns_containsdicts(mocked_function):
-    bills = logic.get_bills()
+    bills = logic.get_bills(1)
     for bill in bills:
         assert isinstance(bill, dict)
 
 @mock.patch('candix_api.data_access.get_bills', side_effect=mock_get_bills)
 def test_lg_getbills_return_hasfields(mocked_function):
-    bills = logic.get_bills()
+    bills = logic.get_bills(1)
     assert len(bills[0].keys()) == 5
     assert 'official_title' in bills[0]
     assert 'last_action_at' in bills[0]
@@ -173,14 +173,6 @@ def test_main_getcandidate_returnsjson(mocked_function):
     with main.app.test_client() as c:
         rv = c.get('/api/candidates/3581')
         json.loads(rv.data)
-
-
-@mock.patch('candix_api.data_access.get_bills', side_effect=mock_get_bills)
-def test_main_bills_returnsjson(mocked_function):
-    with main.app.test_client() as c:
-        rv = c.get('/api/bills')
-        json.loads(rv.data)
-
 
 @mock.patch('candix_api.data_access.get_bill', side_effect=mock_get_bill)
 def test_main_bill_returnsjson(mocked_function):
