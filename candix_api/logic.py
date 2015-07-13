@@ -33,6 +33,10 @@ def get_bill(bill_id):
     bill_tuple = data_access.get_bill(bill_id)
     return dict(bill_tuple._asdict())
 
+def get_top_bills():
+    bills = data_access.get_top_hundred_bills()
+    return bills
+
 def get_states():
     return data_access.get_states()
 

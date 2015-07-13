@@ -34,6 +34,12 @@ def get_bill(bill_id):
     bill = logic.get_bill(bill_id)
     return jsonify(bill)
 
+@app.route('/api/bills/trending')
+def get_top_bills():
+    import pdb; pdb.set_trace()
+    bills = logic.get_top_bills()
+    return jsonify(trending=bills)
+
 @app.route('/api/districts')
 def get_districts():
     return jsonify(districts=logic.get_districts())

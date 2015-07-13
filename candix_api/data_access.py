@@ -115,3 +115,13 @@ def get_user_votes(user_id):
 
     return user_votes
 
+def get_top_hundred_bills():
+    result = do_mysql("select candix_bills.bill_id from candix_bills "
+            "left join wp_postmeta "
+            "on candix_bills.wp_post_id= wp_postmeta.post_id "
+            "where wp_postmeta.meta_key=\"voteiu\" "
+            "order by meta_value desc limit 100")
+    bill_ids = []
+    for thing in result:
+        bill_ids.append(thing[0])
+    return bill_ids
