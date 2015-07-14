@@ -20,6 +20,15 @@ def get_candidate(candix_congress_id):
     candidate_tuple = data_access.get_candidate(candix_congress_id)
     return dict(candidate_tuple._asdict())
 
+def recent_candidate_votes(candix_congress_id):
+    congress_vote_tuples = data_access.recent_candidate_votes(candix_congress_id)
+    congress_votes_dict = []
+
+    for vote_tuple in congress_vote_tuples:
+        vote_dict = dict(vote_tuple._asdict())
+        congress_votes_dict.append(vote_dict)
+    return congress_votes_dict
+
 def get_bills(page_number):
     bill_tuples = data_access.get_bills(page_number)
 

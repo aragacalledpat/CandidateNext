@@ -72,6 +72,27 @@ def get_bill(bill_id):
 
     return bill_tuple
 
+def recent_candidate_votes(candix_congress_id):
+    result = do_mysql("SELECT candix_votes_congress.type, candix_bills.bill_id,candix_votes_congress.timestamp FROM candix_votes_congress "
+            "LEFT JOIN candix_congress on candix_votes_congress.vote = candix_congress.bioguide_id "
+            "LEFT JOIN candix_bills on candix_votes_congress.post = candix_bills.wp_post_id "
+            "WHERE candix_congress_id = " + str(candix_congress_id)  + " AND candix_bills.bill_id is not null "
+            "order by candix_votes_congress.timestamp desc LIMIT 100")
+
+    congress_votes_tuples = map(objects.Congress_Vote._make, result)
+
+    for i, congress_vote_tuple in enumerate(congress_votes_tuples):
+        vote_date = str(congress_vote_tuple.timestamp)
+        readable_vote = congress_vote_tuple.vote
+        if readable_vote == "vote":
+            readable_vote = "yea"
+        if readable_vote == "sink":
+            readable_vote = "nay"
+        congress_vote_tuple = congress_vote_tuple._replace(timestamp=vote_date,vote=readable_vote)
+        congress_votes_tuples[i] = congress_vote_tuple
+
+    return congress_votes_tuples
+
 def get_states():
     return ["AL", "AK", "AZ", "AR", "CA", "CO", "CT",
             "DE", "FL", "GA", "HI", "ID", "IL", "IN",

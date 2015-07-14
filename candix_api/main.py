@@ -18,8 +18,12 @@ def get_candidates():
 
 @app.route('/api/candidates/<candix_congress_id>')
 def get_candidate(candix_congress_id):
-    candidate = logic.get_candidate(candix_congress_id)
-    return jsonify(candidate)
+    if "recent" in request.args:
+        recent_votes = logic.recent_candidate_votes(candix_congress_id)
+        return jsonify(recentVotes=recent_votes)
+    else:
+        candidate = logic.get_candidate(candix_congress_id)
+        return jsonify(candidate)
 
 @app.route('/api/bills')
 def get_bills():
@@ -36,7 +40,6 @@ def get_bill(bill_id):
 
 @app.route('/api/bills/trending')
 def get_top_bills():
-    import pdb; pdb.set_trace()
     bills = logic.get_top_bills()
     return jsonify(trending=bills)
 
