@@ -1,6 +1,5 @@
 calls for v2/v3
 
-1. get all user votes for a specific bill
 2. get percentage congresspeople agree with their district for a specific bill <- should also return a sigma value
 3. get most ignored bills
 
