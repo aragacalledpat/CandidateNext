@@ -46,6 +46,9 @@ def get_top_bills():
     bills = data_access.get_top_hundred_bills()
     return bills
 
+def get_users_votes_on_bill(bill_id):
+    return data_access.get_all_user_votes_on_bill(bill_id)
+
 def get_states():
     return data_access.get_states()
 
@@ -69,3 +72,6 @@ def get_user_votes(user_id):
 
 def get_bills_pagecount():
     return (data_access.get_bills_count() / 100) + 1
+
+def get_most_ignored_bills():
+    return data_access.most_ignored_bills()

@@ -27,3 +27,5 @@ Short_Bill = namedtuple('Short_Bill', ['bill_id', 'chamber', 'introduced_on', 'o
 User_Votes = namedtuple('User_Votes', ['vote', 'bill_id', 'timestamp'])
 
 Congress_Vote = namedtuple('Congress_Vote', ['vote', 'bill_id', 'timestamp'])
+
+Bill_Votes = namedtuple('Bill_Votes', ['user', 'vote', 'timestamp'])

@@ -35,8 +35,13 @@ def get_bills():
 
 @app.route('/api/bills/<bill_id>')
 def get_bill(bill_id):
-    bill = logic.get_bill(bill_id)
-    return jsonify(bill)
+    if "uservotes" in request.args:
+        return jsonify(uservotes=logic.get_users_votes_on_bill(bill_id))
+    elif "mostignored" in request.args:
+        return jsonify(most_ignored_bills=logic.get_most_ignored_bills())
+    else:
+        bill = logic.get_bill(bill_id)
+        return jsonify(bill)
 
 @app.route('/api/bills/trending')
 def get_top_bills():

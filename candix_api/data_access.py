@@ -136,12 +136,40 @@ def get_user_votes(user_id):
 
     return user_votes
 
+def get_all_user_votes_on_bill(bill_id):
+    bill_id = do_mysql("select wp_post_id from candix_bills where bill_id = \"" + bill_id + "\"")
+
+    bill_id = str(bill_id[0][0])
+    result = do_mysql("select vote, type, timestamp from candix_votes_users_bills where post = " + bill_id)
+    user_votes = map(objects.Bill_Votes._make, result)
+
+    for i, user_vote in enumerate(user_votes):
+        user_id = int(user_vote.user)
+        time = str(user_vote.timestamp)
+
+        readable_vote = user_vote.vote
+        if user_vote.vote == "vote":
+            readabe_vote = "yea"
+        if user_vote.vote == "sink":
+            readable_vote = "nay"
+
+        user_votes[i] = user_vote._replace(user=user_id, timestamp=time, vote=readable_vote)
+
+    return user_votes
+
 def get_top_hundred_bills():
     result = do_mysql("select candix_bills.bill_id from candix_bills "
             "left join wp_postmeta "
             "on candix_bills.wp_post_id= wp_postmeta.post_id "
             "where wp_postmeta.meta_key=\"voteiu\" "
             "order by meta_value desc limit 100")
+    bill_ids = []
+    for thing in result:
+        bill_ids.append(thing[0])
+    return bill_ids
+
+def most_ignored_bills():
+    result = do_mysql("SELECT bill_id FROM nashxcix_cdx.candix_bills order by not_interested limit 10")
     bill_ids = []
     for thing in result:
         bill_ids.append(thing[0])
