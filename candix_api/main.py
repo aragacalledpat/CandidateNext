@@ -1,12 +1,33 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort, Response
 import json
 import logic
 
 app = Flask(__name__)
+@app.errorhandler(401)
+def custom_401(error):
+    return Response('valid token required', 401, {'WWWAuthenticate':'Basic realm="Login Required"'})
 
+def valid_token(token):
+    print token
+    with open("tokens") as f:
+        tokens = f.readlines()
+        for element in tokens:
+            element = element.strip("\n")
+            if element == token:
+                return True
+            print token + " and " + element
+        if token in tokens:
+            print "returning true"
+            return True
+        else:
+            print "returning false"
+            return False
 
 @app.route('/api/states')
 def get_states():
+    if "token" not in request.args or not valid_token(request.args.get("token")):
+        abort(401)
+
     return jsonify(states=logic.get_states())
 
 
@@ -60,6 +81,9 @@ def get_district(dist_id):
 def get_user_votes(user_id):
     return jsonify(votes=logic.get_user_votes(user_id))
 
+@app.route('/api/tags')
+def get_most_followed_tags():
+    return jsonify(most_followed=logic.most_folowed_tags())
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)

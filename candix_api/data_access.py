@@ -174,3 +174,11 @@ def most_ignored_bills():
     for thing in result:
         bill_ids.append(thing[0])
     return bill_ids
+
+def most_followed_topics():
+    result = do_mysql("SELECT name FROM candix_issues_users "
+                    "INNER JOIN wp_terms ON (wp_terms.term_id = candix_issues_users.wp_taxonomy_id) limit 10")
+    tags = []
+    for thing in result:
+        tags.append(thing[0])
+    return tags

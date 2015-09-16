@@ -75,3 +75,6 @@ def get_bills_pagecount():
 
 def get_most_ignored_bills():
     return data_access.most_ignored_bills()
+
+def most_folowed_tags():
+    return data_access.most_followed_topics()
