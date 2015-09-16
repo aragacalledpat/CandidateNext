@@ -33,12 +33,18 @@ def get_states():
 
 @app.route('/api/candidates')
 def get_candidates():
+    if "token" not in request.args or not valid_token(request.args.get("token")):
+        abort(401)
+
     candis = logic.get_candidates()
     return jsonify(congresspeople=candis)
 
 
 @app.route('/api/candidates/<candix_congress_id>')
 def get_candidate(candix_congress_id):
+    if "token" not in request.args or not valid_token(request.args.get("token")):
+        abort(401)
+
     if "recent" in request.args:
         recent_votes = logic.recent_candidate_votes(candix_congress_id)
         return jsonify(recentVotes=recent_votes)
@@ -48,6 +54,9 @@ def get_candidate(candix_congress_id):
 
 @app.route('/api/bills')
 def get_bills():
+    if "token" not in request.args or not valid_token(request.args.get("token")):
+        abort(401)
+
     if "page" in request.args:
         bill_list = logic.get_bills(request.args.get('page'))
         return jsonify(bills=bill_list)
@@ -56,6 +65,9 @@ def get_bills():
 
 @app.route('/api/bills/<bill_id>')
 def get_bill(bill_id):
+    if "token" not in request.args or not valid_token(request.args.get("token")):
+        abort(401)
+
     if "uservotes" in request.args:
         return jsonify(uservotes=logic.get_users_votes_on_bill(bill_id))
     elif "mostignored" in request.args:
@@ -66,23 +78,38 @@ def get_bill(bill_id):
 
 @app.route('/api/bills/trending')
 def get_top_bills():
+    if "token" not in request.args or not valid_token(request.args.get("token")):
+        abort(401)
+
     bills = logic.get_top_bills()
     return jsonify(trending=bills)
 
 @app.route('/api/districts')
 def get_districts():
+    if "token" not in request.args or not valid_token(request.args.get("token")):
+        abort(401)
+
     return jsonify(districts=logic.get_districts())
 
 @app.route('/api/districts/<dist_id>')
 def get_district(dist_id):
+    if "token" not in request.args or not valid_token(request.args.get("token")):
+        abort(401)
+
     return jsonify(users=logic.get_district(dist_id))
 
 @app.route('/api/users/<user_id>')
 def get_user_votes(user_id):
+    if "token" not in request.args or not valid_token(request.args.get("token")):
+        abort(401)
+
     return jsonify(votes=logic.get_user_votes(user_id))
 
 @app.route('/api/tags')
 def get_most_followed_tags():
+    if "token" not in request.args or not valid_token(request.args.get("token")):
+        abort(401)
+
     return jsonify(most_followed=logic.most_folowed_tags())
 
 if __name__ == '__main__':

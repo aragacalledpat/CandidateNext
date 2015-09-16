@@ -1,7 +1,3 @@
 calls for v2/v3
 
 1. get percentage congresspeople agree with their district for a specific bill <- should also return a sigma value
-
-2. get most followed topics (implement after db changes)
-
-
