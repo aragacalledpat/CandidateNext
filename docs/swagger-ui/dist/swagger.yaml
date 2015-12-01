@@ -22,8 +22,8 @@ paths:
       responses:
         '200':
           description: An array of abbreviations
-        default:
-          description: Unexpected error
+        '401':
+          description: Api token is absent/incorrect
   /candidates:
     get:
       summary: Get all candidate objects 
@@ -31,8 +31,8 @@ paths:
       responses:
         '200':
           description: An array of abbreviations
-        default:
-          description: Unexpected error
+        '401':
+          description: Api token is absent/incorrect
   /bills:
     get:
       summary: Get all bill objects 
@@ -40,8 +40,8 @@ paths:
       responses:
         '200':
           description: An array of abbreviations
-        default:
-          description: Unexpected error
+        '401':
+          description: Api token is absent/incorrect
   /candidates/{candix_congress_id}:
     get:
       summary: Get all bill objects 
@@ -49,8 +49,8 @@ paths:
       responses:
         '200':
           description: An array of abbreviations
-        default:
-          description: Unexpected error
+        '401':
+          description: Api token is absent/incorrect
   /bills/{bill_id}:
     get:
       summary: Get all bill objects 
@@ -58,8 +58,8 @@ paths:
       responses:
         '200':
           description: An array of abbreviations
-        default:
-          description: Unexpected error
+        '401':
+          description: Api token is absent/incorrect
   /bills/trending:
     get:
       summary: Get all bill objects 
@@ -67,8 +67,8 @@ paths:
       responses:
         '200':
           description: An array of abbreviations
-        default:
-          description: Unexpected error
+        '401':
+          description: Api token is absent/incorrect
   /districts:
     get:
       summary: Get all bill objects 
@@ -76,8 +76,8 @@ paths:
       responses:
         '200':
           description: An array of abbreviations
-        default:
-          description: Unexpected error
+        '401':
+          description: Api token is absent/incorrect
   /districts/{dist_id}:
     get:
       summary: Get all bill objects 
@@ -85,8 +85,8 @@ paths:
       responses:
         '200':
           description: An array of abbreviations
-        default:
-          description: Unexpected error
+        '401':
+          description: Api token is absent/incorrect
   /users/{user_id}:
     get:
       summary: Get all bill objects 
@@ -94,8 +94,8 @@ paths:
       responses:
         '200':
           description: An array of abbreviations
-        default:
-          description: Unexpected error
+        '401':
+          description: Api token is absent/incorrect
   /tags:
     get:
       summary: Get all bill objects 
@@ -103,8 +103,8 @@ paths:
       responses:
         '200':
           description: An array of abbreviations
-        default:
-          description: Unexpected error
+        '401':
+          description: Api token is absent/incorrect
 definitions:
   CongressPersonRecord:
     type: object
