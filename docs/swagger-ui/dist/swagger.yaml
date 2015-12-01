@@ -18,8 +18,7 @@ paths:
   /states:
     get:
       summary: Get all state abbreviations
-      description: |
-        You'll need the state abbreviations so here they are, dude.
+      description: test
       responses:
         '200':
           description: An array of abbreviations
@@ -28,8 +27,7 @@ paths:
   /candidates:
     get:
       summary: Get all candidate objects 
-      description: |
-        get candidates description
+      description: test
       responses:
         '200':
           description: An array of abbreviations
@@ -38,8 +36,7 @@ paths:
   /bills:
     get:
       summary: Get all bill objects 
-      description: |
-        get bills descriptions 
+      description: test 
       responses:
         '200':
           description: An array of abbreviations
@@ -48,8 +45,7 @@ paths:
   /candidates/{candix_congress_id}:
     get:
       summary: Get all bill objects 
-      description: |
-        get bills descriptions 
+      description: test 
       responses:
         '200':
           description: An array of abbreviations
@@ -58,8 +54,7 @@ paths:
   /bills/{bill_id}:
     get:
       summary: Get all bill objects 
-      description: |
-        get bills descriptions 
+      description: test 
       responses:
         '200':
           description: An array of abbreviations
@@ -68,8 +63,7 @@ paths:
   /bills/trending:
     get:
       summary: Get all bill objects 
-      description: |
-        get bills descriptions 
+      description: test 
       responses:
         '200':
           description: An array of abbreviations
@@ -78,8 +72,7 @@ paths:
   /districts:
     get:
       summary: Get all bill objects 
-      description: |
-        get bills descriptions 
+      description: test 
       responses:
         '200':
           description: An array of abbreviations
@@ -88,8 +81,7 @@ paths:
   /districts/{dist_id}:
     get:
       summary: Get all bill objects 
-      description: |
-        get bills descriptions 
+      description: test 
       responses:
         '200':
           description: An array of abbreviations
@@ -98,8 +90,7 @@ paths:
   /users/{user_id}:
     get:
       summary: Get all bill objects 
-      description: |
-        get bills descriptions 
+      description: test 
       responses:
         '200':
           description: An array of abbreviations
@@ -108,8 +99,7 @@ paths:
   /tags:
     get:
       summary: Get all bill objects 
-      description: |
-        get bills descriptions 
+      description: test 
       responses:
         '200':
           description: An array of abbreviations
