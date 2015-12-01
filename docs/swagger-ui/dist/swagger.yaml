@@ -205,12 +205,111 @@ definitions:
 
   Bill:
       type: object
+      properties:
+        candix_bill_id:
+          type: string
+        wp_post_id:
+          type: string
+        bill_id:
+          type: string
+        bill_type:
+          type: string
+        chamber:
+          type: string
+        committee_ids:
+          type: string
+        congress:
+          type: string
+        cosponsers_count:
+          type: string
+        cosponsor_ids:
+          type: string
+        enacted_as:
+          type: string
+        history:
+          type: string
+        introduced_on:
+          type: string
+        keywords:
+          type: string
+        last_action:
+          type: string
+        last_action_at:
+          type: string
+        last_version:
+          type: string
+        last_version_on:
+          type: string
+        last_vote_at:
+          type: string
+        number:
+          type: string
+        official_title:
+          type: string
+        popular_title:
+          type: string
+        related_bill_ids:
+          type: string
+        search:
+          type: string
+        short_title:
+          type: string
+        sponsor:
+          type: string
+        sponsor_id:
+          type: string
+        summary:
+          type: string
+        summary_short:
+          type: string
+        titles:
+          type: string
+        not_interested:
+          type: string
+        withdrawn_cosponsors_count:
+          type: string
+
   Short_Bill:
       type: object
+      properties:
+        bill_id:
+          type: string
+        chamber:
+          type: string
+        introduced_on:
+          type: string
+        official_title:
+          type: string
+        last_action_at:
+          type: string
+
   User_Votes:
       type: object
+      properties:
+        vote:
+          type: string
+        bill_id:
+          type: string
+        timestamp:
+          type: string
+
   Congress_vote:
       type: object
+      properties:
+        vote:
+          type: string
+        bill_id:
+          type: string
+        timestamp:
+          type: string
+
   Bill_Votes:
       type: object
+      properties:
+        user:
+          type: string
+        vote:
+          type: string
+        timestamp:
+          type: string
   
