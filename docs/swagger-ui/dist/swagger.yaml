@@ -45,7 +45,76 @@ paths:
           description: An array of abbreviations
         default:
           description: Unexpected error
-
+  /candidates/{candix_congress_id}:
+    get:
+      summary: Get all bill objects 
+      description: |
+        get bills descriptions 
+      responses:
+        '200':
+          description: An array of abbreviations
+        default:
+          description: Unexpected error
+  /bills/{bill_id}:
+    get:
+      summary: Get all bill objects 
+      description: |
+        get bills descriptions 
+      responses:
+        '200':
+          description: An array of abbreviations
+        default:
+          description: Unexpected error
+  /bills/trending:
+    get:
+      summary: Get all bill objects 
+      description: |
+        get bills descriptions 
+      responses:
+        '200':
+          description: An array of abbreviations
+        default:
+          description: Unexpected error
+  /districts:
+    get:
+      summary: Get all bill objects 
+      description: |
+        get bills descriptions 
+      responses:
+        '200':
+          description: An array of abbreviations
+        default:
+          description: Unexpected error
+  /districts/{dist_id}:
+    get:
+      summary: Get all bill objects 
+      description: |
+        get bills descriptions 
+      responses:
+        '200':
+          description: An array of abbreviations
+        default:
+          description: Unexpected error
+  /users/{user_id}:
+    get:
+      summary: Get all bill objects 
+      description: |
+        get bills descriptions 
+      responses:
+        '200':
+          description: An array of abbreviations
+        default:
+          description: Unexpected error
+  /tags:
+    get:
+      summary: Get all bill objects 
+      description: |
+        get bills descriptions 
+      responses:
+        '200':
+          description: An array of abbreviations
+        default:
+          description: Unexpected error
 definitions:
   User:
     type: object
