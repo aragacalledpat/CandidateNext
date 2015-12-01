@@ -176,11 +176,33 @@ definitions:
   Short_CongressPersonRecord:
       type: object
       properties:
-        youtube_url:
+        ID:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        gender:
+          type: string
+        party:
+          type: string
+        state:
+          type: string
+        district:
           type: string
 
   District:
       type: object
+      properties:
+        candix_districts_id:
+          type: string
+        candix_districs_path_id:
+          type: string
+        state:
+          type: string
+        district:
+          type: string
+
   Bill:
       type: object
   Short_Bill:
