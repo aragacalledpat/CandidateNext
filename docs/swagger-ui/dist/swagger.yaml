@@ -109,13 +109,76 @@ definitions:
   CongressPersonRecord:
     type: object
     properties:
-      id:
+      candix_congress_id:
         type: integer
-        format: int64
-      name:
+      pw_post_id:
+        type: string
+      bioguide_id:
+        type: string
+      birthdate:
+        type: string
+      congresspedia_url:
+        type: string
+      congress_office:
+        type: string
+      crp_id:
+        type: string
+      district:
+        type: string
+      facebook_id:
+        type: string
+      fax:
+        type: string
+      fec_id:
+        type: string
+      firstname:
+        type: string
+      gender:
+        type: string
+      govtrack_id:
+        type: string
+      in_office:
+        type: string
+      lastname:
+        type: string
+      middlename:
+        type: string
+      name_suffix:
+        type: string
+      nickname:
+        type: string
+      oc_email:
+        type: string
+      official_rss:
+        type: string
+      party:
+        type: string
+      phone:
+        type: string
+      senate_class:
+        type: string
+      state:
+        type: string
+      title:
+        type: string
+      twitter_id:
+        type: string
+      voteiu:
+        type: string
+      votesmart_id:
+        type: string
+      webform:
+        type: string
+      website:
+        type: string
+      youtube_url:
         type: string
   Short_CongressPersonRecord:
       type: object
+      properties:
+        youtube_url:
+          type: string
+
   District:
       type: object
   Bill:
