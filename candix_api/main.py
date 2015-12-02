@@ -9,7 +9,16 @@ def custom_401(error):
 
 def valid_token(token):
     print token
+    print "hacky check"
+    if token == "goodtoken":
+	print "good hack"
+	return True
+    else:
+	print "bad token hack"
+        return False
+
     with open("tokens") as f:
+	print "looks like we made it"
         tokens = f.readlines()
         for element in tokens:
             element = element.strip("\n")
@@ -113,4 +122,4 @@ def get_most_followed_tags():
     return jsonify(most_followed=logic.most_folowed_tags())
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=True)
+    app.run()
