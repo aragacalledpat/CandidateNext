@@ -1,3 +1,4 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic');
 /* droid-sans-regular - latin */
 @font-face {
   font-family: 'Droid Sans';
@@ -24,3 +25,4 @@
        url('../fonts/droid-sans-v6-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
        url('../fonts/droid-sans-v6-latin-700.svg#DroidSans') format('svg'); /* Legacy iOS */
 }
+
