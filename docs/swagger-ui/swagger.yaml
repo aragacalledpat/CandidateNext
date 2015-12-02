@@ -1,0 +1,342 @@
+swagger: '2.0'
+info:
+  title: Polling Partners API
+  description: Programatically sharing data with partners
+  version: 0.2.0
+host: api.candidatenextdomain.com
+schemes:
+  - https
+basePath: /api
+produces:
+  - application/json
+securityDefinitions:
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+paths:
+  /states:
+    get:
+      summary: Get all state abbreviations
+      description: ''
+      responses:
+        '200':
+          description: An array of state abbreviations
+          schema:
+            type: array
+            items:
+              type: string
+        '401':
+          description: Api token is absent/incorrect
+
+  /candidates:
+    get:
+      summary: Get all congressperson objects 
+      description: ''
+      responses:
+        '200':
+          description: Truncated version of congressperson data
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Short_CongressPersonRecord'
+        '401':
+          description: Api token is absent/incorrect
+
+  /bills:
+    get:
+      summary: Get all bill objects 
+      description: '' 
+      responses:
+        '200':
+          description: An array of truncated bill data
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Short_Bill'
+        '401':
+          description: Api token is absent/incorrect
+
+  /candidates/{candix_congress_id}:
+    get:
+      summary: Get detailed information on a single congressperson
+      description: '' 
+      responses:
+        '200':
+          description: all available data on a given congressperson
+          schema:
+            $ref: '#/definitions/CongressPersonRecord'
+        '401':
+          description: Api token is absent/incorrect
+
+  /bills/{bill_id}:
+    get:
+      summary: Get detailed information on a single bill
+      description: '' 
+      responses:
+        '200':
+          description: An array of bills
+          schema:
+            $ref: "#/definitions/Bill"
+        '401':
+          description: Api token is absent/incorrect
+
+  /bills/trending:
+    get:
+      summary: Get Ids of the most trending bills
+      description: '' 
+      responses:
+        '200':
+          description: An array of bill ids
+          schema:
+            type: array
+            items:
+              type: string
+        '401':
+          description: Api token is absent/incorrect
+
+  /districts:
+    get:
+      summary: Get list of all districts
+      description: '' 
+      responses:
+        '200':
+          description: A single district
+          schema:
+            $ref : '#/definitions/District'
+        '401':
+          description: Api token is absent/incorrect
+
+  /users/{user_id}:
+    get:
+      summary: Get information of a specific (but anonymous) user's opinions
+      description: '' 
+      responses:
+        '200':
+          description: An array of objects detail (anonymous) user opinions
+          schema:
+            $ref : "#/definitions/User_Votes"
+        '401':
+          description: Api token is absent/incorrect
+  /tags:
+    get:
+      summary: Get tags for bills
+      description: '' 
+      responses:
+        '200':
+          description: An array of tags
+          schema:
+            type: array
+            items:
+              type: string
+        '401':
+          description: Api token is absent/incorrect
+
+definitions:
+  CongressPersonRecord:
+    type: object
+    properties:
+      candix_congress_id:
+        type: integer
+      pw_post_id:
+        type: string
+      bioguide_id:
+        type: string
+      birthdate:
+        type: string
+      congresspedia_url:
+        type: string
+      congress_office:
+        type: string
+      crp_id:
+        type: string
+      district:
+        type: string
+      facebook_id:
+        type: string
+      fax:
+        type: string
+      fec_id:
+        type: string
+      firstname:
+        type: string
+      gender:
+        type: string
+      govtrack_id:
+        type: string
+      in_office:
+        type: string
+      lastname:
+        type: string
+      middlename:
+        type: string
+      name_suffix:
+        type: string
+      nickname:
+        type: string
+      oc_email:
+        type: string
+      official_rss:
+        type: string
+      party:
+        type: string
+      phone:
+        type: string
+      senate_class:
+        type: string
+      state:
+        type: string
+      title:
+        type: string
+      twitter_id:
+        type: string
+      voteiu:
+        type: string
+      votesmart_id:
+        type: string
+      webform:
+        type: string
+      website:
+        type: string
+      youtube_url:
+        type: string
+  Short_CongressPersonRecord:
+      type: object
+      properties:
+        ID:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        gender:
+          type: string
+        party:
+          type: string
+        state:
+          type: string
+        district:
+          type: string
+
+  District:
+      type: object
+      properties:
+        candix_districts_id:
+          type: string
+        candix_districs_path_id:
+          type: string
+        state:
+          type: string
+        district:
+          type: string
+
+  Bill:
+      type: object
+      properties:
+        candix_bill_id:
+          type: string
+        wp_post_id:
+          type: string
+        bill_id:
+          type: string
+        bill_type:
+          type: string
+        chamber:
+          type: string
+        committee_ids:
+          type: string
+        congress:
+          type: string
+        cosponsers_count:
+          type: string
+        cosponsor_ids:
+          type: string
+        enacted_as:
+          type: string
+        history:
+          type: string
+        introduced_on:
+          type: string
+        keywords:
+          type: string
+        last_action:
+          type: string
+        last_action_at:
+          type: string
+        last_version:
+          type: string
+        last_version_on:
+          type: string
+        last_vote_at:
+          type: string
+        number:
+          type: string
+        official_title:
+          type: string
+        popular_title:
+          type: string
+        related_bill_ids:
+          type: string
+        search:
+          type: string
+        short_title:
+          type: string
+        sponsor:
+          type: string
+        sponsor_id:
+          type: string
+        summary:
+          type: string
+        summary_short:
+          type: string
+        titles:
+          type: string
+        not_interested:
+          type: string
+        withdrawn_cosponsors_count:
+          type: string
+
+  Short_Bill:
+      type: object
+      properties:
+        bill_id:
+          type: string
+        chamber:
+          type: string
+        introduced_on:
+          type: string
+        official_title:
+          type: string
+        last_action_at:
+          type: string
+
+  User_Votes:
+      type: object
+      properties:
+        vote:
+          type: string
+        bill_id:
+          type: string
+        timestamp:
+          type: string
+
+  Congress_vote:
+      type: object
+      properties:
+        vote:
+          type: string
+        bill_id:
+          type: string
+        timestamp:
+          type: string
+
+  Bill_Votes:
+      type: object
+      properties:
+        user:
+          type: string
+        vote:
+          type: string
+        timestamp:
+          type: string
+  
