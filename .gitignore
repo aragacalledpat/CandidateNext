@@ -59,3 +59,4 @@ target/
 #Db Connection
 db_connection
 docs/swagger-ui/node_modules
+!docs/swagger-ui/lib
