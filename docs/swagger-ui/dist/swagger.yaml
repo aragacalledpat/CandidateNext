@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: Polling Partners API
   description: Programatically sharing data with partners
-  version: 0.1.0
+  version: 0.2.0
 host: api.candidatenextdomain.com
 schemes:
   - https
@@ -22,8 +22,13 @@ paths:
       responses:
         '200':
           description: An array of abbreviations
+          schema:
+            type: array
+            items:
+              type: string
         '401':
           description: Api token is absent/incorrect
+
   /candidates:
     get:
       summary: Get all candidate objects 
@@ -31,8 +36,13 @@ paths:
       responses:
         '200':
           description: An array of abbreviations
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Short_CongressPersonRecord'
         '401':
           description: Api token is absent/incorrect
+
   /bills:
     get:
       summary: Get all bill objects 
@@ -40,71 +50,102 @@ paths:
       responses:
         '200':
           description: An array of abbreviations
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Short_Bill'
         '401':
           description: Api token is absent/incorrect
+
   /candidates/{candix_congress_id}:
     get:
-      summary: Get all bill objects 
+      summary: Get detailed information on a single congressperson
       description: '' 
       responses:
         '200':
           description: An array of abbreviations
+          schema:
+            $ref: '#/definitions/CongressPersonRecord'
         '401':
           description: Api token is absent/incorrect
+
   /bills/{bill_id}:
     get:
-      summary: Get all bill objects 
+      summary: Get detailed information on a single bill
       description: '' 
       responses:
         '200':
           description: An array of abbreviations
+          schema:
+            $ref: "#/definitions/Bill"
         '401':
           description: Api token is absent/incorrect
+
   /bills/trending:
     get:
-      summary: Get all bill objects 
+      summary: Get Ids of the most trending bills
       description: '' 
       responses:
         '200':
           description: An array of abbreviations
+          schema:
+            type: array
+            items:
+              type: string
         '401':
           description: Api token is absent/incorrect
+
   /districts:
     get:
-      summary: Get all bill objects 
+      summary: Get list of all districts
       description: '' 
       responses:
         '200':
           description: An array of abbreviations
+          schema:
+            type: array
+            items:
+              $ref : '#/definitions/District'
         '401':
           description: Api token is absent/incorrect
+
   /districts/{dist_id}:
     get:
-      summary: Get all bill objects 
+      summary: Get detailed information on one district
       description: '' 
       responses:
         '200':
           description: An array of abbreviations
+          schema:
+            $ref : '#/definitions/District'
         '401':
           description: Api token is absent/incorrect
+
   /users/{user_id}:
     get:
-      summary: Get all bill objects 
+      summary: Get information of a specific (but anonymous) user's opinions
       description: '' 
       responses:
         '200':
           description: An array of abbreviations
+          schema:
+            $ref : "#/definitions/User_Votes"
         '401':
           description: Api token is absent/incorrect
   /tags:
     get:
-      summary: Get all bill objects 
+      summary: Get tags for bills
       description: '' 
       responses:
         '200':
           description: An array of abbreviations
+          schema:
+            type: array
+            items:
+              type: string
         '401':
           description: Api token is absent/incorrect
+
 definitions:
   CongressPersonRecord:
     type: object
