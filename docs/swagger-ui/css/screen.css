@@ -1280,3 +1280,16 @@
   text-align: center;
   padding-top: 10px;
 }
+
+/* Andrew Styles */
+.footer {
+    display: none;
+}
+
+.swagger-section .swagger-ui-wrap ul#resources li.resource div.heading {
+    display: none;
+}
+
+.response-content-type {
+    display : none;
+}
