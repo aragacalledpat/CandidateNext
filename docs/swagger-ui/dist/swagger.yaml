@@ -21,7 +21,7 @@ paths:
       description: ''
       responses:
         '200':
-          description: An array of abbreviations
+          description: An array of state abbreviations
           schema:
             type: array
             items:
@@ -31,11 +31,11 @@ paths:
 
   /candidates:
     get:
-      summary: Get all candidate objects 
+      summary: Get all congressperson objects 
       description: ''
       responses:
         '200':
-          description: An array of abbreviations
+          description: Truncated version of congressperson data
           schema:
             type: array
             items:
@@ -49,7 +49,7 @@ paths:
       description: '' 
       responses:
         '200':
-          description: An array of abbreviations
+          description: An array of truncated bill data
           schema:
             type: array
             items:
@@ -63,7 +63,7 @@ paths:
       description: '' 
       responses:
         '200':
-          description: An array of abbreviations
+          description: all available data on a given congressperson
           schema:
             $ref: '#/definitions/CongressPersonRecord'
         '401':
@@ -75,7 +75,7 @@ paths:
       description: '' 
       responses:
         '200':
-          description: An array of abbreviations
+          description: An array of bills
           schema:
             $ref: "#/definitions/Bill"
         '401':
@@ -87,7 +87,7 @@ paths:
       description: '' 
       responses:
         '200':
-          description: An array of abbreviations
+          description: An array of bill ids
           schema:
             type: array
             items:
@@ -101,21 +101,7 @@ paths:
       description: '' 
       responses:
         '200':
-          description: An array of abbreviations
-          schema:
-            type: array
-            items:
-              $ref : '#/definitions/District'
-        '401':
-          description: Api token is absent/incorrect
-
-  /districts/{dist_id}:
-    get:
-      summary: Get detailed information on one district
-      description: '' 
-      responses:
-        '200':
-          description: An array of abbreviations
+          description: A single district
           schema:
             $ref : '#/definitions/District'
         '401':
@@ -127,7 +113,7 @@ paths:
       description: '' 
       responses:
         '200':
-          description: An array of abbreviations
+          description: An array of objects detail (anonymous) user opinions
           schema:
             $ref : "#/definitions/User_Votes"
         '401':
@@ -138,7 +124,7 @@ paths:
       description: '' 
       responses:
         '200':
-          description: An array of abbreviations
+          description: An array of tags
           schema:
             type: array
             items:
