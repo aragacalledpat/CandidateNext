@@ -3,7 +3,7 @@ info:
   title: Polling Partners API
   description: Programatically sharing data with partners
   version: 0.2.0
-host: api.candidatenextdomain.com
+host: api.candidatenext.com
 schemes:
   - https
 basePath: /api
